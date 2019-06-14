@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <include file="$(find agitr)/launch/doublesim.launch"/>
+  
+  <arg name="use_sim3" default="true"/>
+
+  <group ns="sim3" if="$(arg use_sim3)">
+    <node pkg="turtlesim" type="turtlesim_node" name="turtlesim"/>
+    <node pkg="turtlesim" type="turtle_teleop_key" name="teleop_key" required="true" launch-prefix="xterm -e"/>
+  </group>
+</launch>
