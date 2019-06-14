@@ -1,2 +1,4 @@
 book/*
 course/*
+packages/lane_marker_messages
+packages/lane_marker_plugin
