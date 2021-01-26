@@ -7,7 +7,11 @@ project(jessica)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp geometry_msgs)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  geometry_msgs
+  turtlesim
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -132,6 +136,7 @@ message(STATUS "catkin include dirs: ${catkin_INCLUDE_DIRS}")
 #add_executable(${PROJECT_NAME}_node src/jessica.cpp)
 add_executable(hello_node src/hello_node.cpp)
 add_executable(publish_velocity_node src/publish_velocity_node.cpp)
+add_executable(subscribe_pose_node src/subscribe_pose_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -153,6 +158,10 @@ target_link_libraries(hello_node
 )
 
 target_link_libraries(publish_velocity_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(subscribe_pose_node
   ${catkin_LIBRARIES}
 )
 
