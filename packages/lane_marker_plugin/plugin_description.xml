@@ -1,0 +1,12 @@
+<library path="lib/liblane_marker_plugin">
+  
+  <class name="lane_marker_plugin/LaneMarker"
+         type="lane_marker_plugin::LaneMarkerDisplay"
+         base_class_type="rviz::Display">
+    <description>
+      Displays lane markers from lane_marker_messages/LaneMarker messages.
+    </description>
+    <message_type>lane_marker_messages/LaneMarker</message_type>
+  </class>
+  
+</library>
