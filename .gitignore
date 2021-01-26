@@ -1,2 +1,6 @@
+.catkin_tools/*
 book/*
 course/*
+build/*
+devel/*
+logs/*
