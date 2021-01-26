@@ -7,8 +7,7 @@ project(jessica)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-#find_package(catkin REQUIRED COMPONENTS roscpp geometry_msgs turtlesim)
-find_package(catkin REQUIRED COMPONENTS roscpp)
+find_package(catkin REQUIRED COMPONENTS roscpp geometry_msgs)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -130,7 +129,9 @@ message(STATUS "catkin include dirs: ${catkin_INCLUDE_DIRS}")
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}_node src/hello_node.cpp)
+#add_executable(${PROJECT_NAME}_node src/jessica.cpp)
+add_executable(hello_node src/hello_node.cpp)
+add_executable(publish_velocity_node src/publish_velocity_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -143,7 +144,15 @@ add_executable(${PROJECT_NAME}_node src/hello_node.cpp)
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}_node
+# target_link_libraries(${PROJECT_NAME}_node
+#   ${catkin_LIBRARIES}
+# )
+
+target_link_libraries(hello_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(publish_velocity_node
   ${catkin_LIBRARIES}
 )
 
