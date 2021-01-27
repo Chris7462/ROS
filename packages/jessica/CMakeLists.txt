@@ -137,6 +137,8 @@ message(STATUS "catkin include dirs: ${catkin_INCLUDE_DIRS}")
 add_executable(hello_node src/hello_node.cpp)
 add_executable(publish_velocity_node src/publish_velocity_node.cpp)
 add_executable(subscribe_pose_node src/subscribe_pose_node.cpp)
+add_executable(log_level_node src/log_level_node.cpp)
+add_executable(anonymous_name_node src/anonymous_name_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -162,6 +164,14 @@ target_link_libraries(publish_velocity_node
 )
 
 target_link_libraries(subscribe_pose_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(log_level_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(anonymous_name_node
   ${catkin_LIBRARIES}
 )
 
