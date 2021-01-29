@@ -139,6 +139,7 @@ add_executable(publish_velocity_node src/publish_velocity_node.cpp)
 add_executable(subscribe_pose_node src/subscribe_pose_node.cpp)
 add_executable(log_level_node src/log_level_node.cpp)
 add_executable(anonymous_name_node src/anonymous_name_node.cpp)
+add_executable(reverse_cmd_velocity_node src/reverse_cmd_velocity_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -172,6 +173,10 @@ target_link_libraries(log_level_node
 )
 
 target_link_libraries(anonymous_name_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(reverse_cmd_velocity_node
   ${catkin_LIBRARIES}
 )
 

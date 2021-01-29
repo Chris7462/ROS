@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <node name="turtlesim_node" pkg="turtlesim" type="turtlesim_node" ns="sim1" />
+  <node name="teleop_key" pkg="turtlesim" type="turtle_teleop_key" required="true" launch-prefix="xterm -e" ns="sim1"/>
+
+  <node name="turtlesim_node" pkg="turtlesim" type="turtlesim_node" ns="sim2" />
+  <node name="velocity_publisher" pkg="jessica" type="publish_velocity_node" ns="sim2" />
+</launch>
