@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <node name="turtlesim" pkg="turtlesim" type="turtlesim_node" respawn="true"/>
+  <node name="publish_velocity" pkg="jessica" type="publish_velocity_with_max_node" output="screen">
+    <param name="max_vel" value="3"/>
+  </node>
+  <node name="set_bg_color" pkg="jessica" type="set_bg_color_node"/>
+</launch>

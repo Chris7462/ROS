@@ -140,6 +140,10 @@ add_executable(subscribe_pose_node src/subscribe_pose_node.cpp)
 add_executable(log_level_node src/log_level_node.cpp)
 add_executable(anonymous_name_node src/anonymous_name_node.cpp)
 add_executable(reverse_cmd_velocity_node src/reverse_cmd_velocity_node.cpp)
+add_executable(set_bg_color_node src/set_bg_color_node.cpp)
+add_executable(publish_velocity_with_max_node src/publish_velocity_with_max_node.cpp)
+add_executable(client_spawn_turtle src/client_spawn_turtle.cpp)
+add_executable(service_publish_toggle src/service_publish_toggle.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -177,6 +181,22 @@ target_link_libraries(anonymous_name_node
 )
 
 target_link_libraries(reverse_cmd_velocity_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(set_bg_color_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(publish_velocity_with_max_node
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(client_spawn_turtle
+  ${catkin_LIBRARIES}
+)
+
+target_link_libraries(service_publish_toggle
   ${catkin_LIBRARIES}
 )
 
