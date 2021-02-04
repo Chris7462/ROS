@@ -3,6 +3,7 @@
 #include <pcl_conversions/pcl_conversions.h>
 #include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
+#include <pcl/common/transforms.h>
 #include <sensor_msgs/PointCloud2.h>
 #include <string>
 #include <cmath>
@@ -12,17 +13,39 @@ bool isVehicle(const pcl::PointXYZ &pt) {
 }
 
 void callBack(const sensor_msgs::PointCloud2ConstPtr &msg) {
-  //ROS_INFO_STREAM("Received Pandar topic");
+  // put msg to internal data structure
   pcl::PointCloud<pcl::PointXYZ> cloud_in;
   pcl::fromROSMsg(*msg, cloud_in);
 
-  std::cout << "Received PCL data\n";
+  // transform the point cloud 90 degree clockwise along with z-axis.
+  pcl::PointCloud<pcl::PointXYZ> cloud_transformed;
+  Eigen::Matrix4f transformationMatrix;
+  transformationMatrix <<
+    cos(M_PI_2), -sin(M_PI_2), 0, 0,
+    sin(M_PI_2),  cos(M_PI_2), 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1;
+
+  pcl::transformPointCloud(cloud_in, cloud_transformed, transformationMatrix);
+
+  /*
+  std::cout << "Raw PCL data\n";
   for ( auto point : cloud_in.points ) {
     if ( !isVehicle(point) ) {
       std::cout << "Points: " << point.x << ',' << point.y << ',' << point.z << '\n';
     }
   }
   std::cout << '\n';
+  */
+
+  std::cout << "Transformed PCL data\n";
+  for ( auto point : cloud_transformed.points ) {
+    //if ( !isVehicle(point) ) {
+      std::cout << "Points: " << point.x << ',' << point.y << ',' << point.z << '\n';
+    //}
+  }
+  std::cout << '\n';
+
 }
 
 int main(int argc, char **argv) {
