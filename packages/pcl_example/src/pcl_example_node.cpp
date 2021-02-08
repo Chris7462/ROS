@@ -55,6 +55,38 @@ int main(int argc, char **argv) {
   //std::string topic = nh.resolveName("points_raw");
   const uint32_t queue_size = 1;
 
+
+  pcl::PointCloud<pcl::PointXYZ> cloud;
+  cloud.push_back(pcl::PointXYZ(1,1,1));
+  cloud.push_back(pcl::PointXYZ(2,2,2));
+  cloud.push_back(pcl::PointXYZ(3,3,3));
+  cloud.push_back(pcl::PointXYZ(4,4,4));
+  cloud.push_back(pcl::PointXYZ(1,1,1));
+//for ( size_t i = 0; i < cloud.size(); ++i ) {
+//  ROS_INFO_STREAM("(x,y,z,i) = " << cloud.at(i));
+//}
+
+  pcl::PointCloud<pcl::PointXYZI>::Ptr in_temp(new pcl::PointCloud<pcl::PointXYZI>());
+  copyPointCloud(cloud, *in_temp);
+  for ( size_t i = 0; i < in_temp->size(); ++i ) {
+    ROS_INFO_STREAM("(x,y,z,i) = " << in_temp->at(i));
+  }
+
+  pcl::PointCloud<pcl::PointXYZI>::Ptr pc_copy(new pcl::PointCloud<pcl::PointXYZI>());
+  *pc_copy = *in_temp;
+  std::cout << &pc_copy << '\t' << &in_temp << '\n';
+
+  pcl::PointXYZI point;
+  for ( size_t i = 0; i < cloud.size(); ++i ) {
+    point.x = cloud[i].x;
+    point.y = cloud[i].y;
+    point.z = cloud[i].z;
+    ROS_INFO_STREAM(point);
+  }
+//for ( auto &point : pc_copy->points ) {
+//  ROS_INFO_STREAM(point);
+//}
+
   ros::Subscriber sub = nh.subscribe(topic, queue_size, &callBack);
   ros::spin();
 
