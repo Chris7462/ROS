@@ -22,8 +22,8 @@ idz = pcls(:,3) > -2.6 & pcls(:,3) < -1.85;
 pcls = pcls(idz,:);
 
 % remove any data outside 20 meters radius
-id = sqrt(sum(pcls.^2,2)) <= 20.0;
-pcls = pcls(id,:);
+%id = sqrt(sum(pcls.^2,2)) <= 20.0;
+%pcls = pcls(id,:);
 
 % plot the data
 plot3(pcls(:,1), pcls(:,2), pcls(:,3),'.');
@@ -45,12 +45,35 @@ ylim([-20 20]);
 zlim([-20,20]);
 
 %% ring container
-ring = cell(1,28);
+ring = cell(1,30);
 for i = 1:size(pcls,1)
     rid = getRingID(pcls(i,1), pcls(i,2), pcls(i,3));
     ring{rid} = [ring{rid}; pcls(i,:)];
 end
-% sort the data by angle %% index can be angle of xy
+
+i = 25;
+angle = atan2(ring{i}(:,2), ring{i}(:,1)) .* 180/pi;
+figure;
+plot(angle, ring{i}(:,3), 'o-');
+hold on;
+
+f = fit(angle, ring{i}(:,3), 'smoothingspline', 'SmoothingParam', 0.005);
+plot(f);
+
+figure;
+deriv = differentiate(f,angle);
+plot(angle, deriv);
+hold on
+plot([-80,100], [0,0], '--');
+
+
+
+%for i = 1:length(ring)
+%    angle = atan2(ring{i}(:,2), ring{i}(:,1)) .* 180/pi;
+%    figure;
+%    plot(angle, ring{i}(:,3),'o-');
+%end
+
 n = size(ring{26}(:,3),1);
 % get xy-plane angle for each points
 
