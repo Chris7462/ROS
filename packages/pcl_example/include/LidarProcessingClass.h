@@ -4,6 +4,7 @@
 class LidarProcessingClass
 {
   LidarProcessingClass() = default;
+  ~LidarProcessingClass() = default;
 };
 
 #endif
