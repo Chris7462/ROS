@@ -12,6 +12,31 @@ bool isVehicle(const pcl::PointXYZ &pt) {
   return (sqrt(pt.x*pt.x + pt.y*pt.y + pt.z*pt.z) <= 3);
 }
 
+void HesaifromROSMsg(const sensor_msgs::PointCloud2 &cloud_msg, pcl::PointCloud<pcl:PointXYZI> &pc_out) {
+  //Get the field structure of this point cloud
+  int point_byes = cloud_msg.point_step;
+  int offset_x;
+  int offset_y;
+  int offset_z;
+  int offset_intensity;
+
+  for ( size_t i = 0; i < cloud_msg.fields.size(); ++i ) {
+    if ( cloud_msg.fields[i].name == "x" ) {
+      offset_x = cloud_msg.fields[i].offset;
+    }
+    if ( cloud_msg.fields[i].name == "y" ) {
+      offset_y = cloud_msg.fields[i].offset;
+    }
+    if ( cloud_msg.fields[i].name == "z" ) {
+      offset_z = cloud_msg.fields[i].offset;
+    }
+    if ( cloud_msg.fields[i].name == "intensity" ) {
+      offset_intensity = cloud_msg.fields[i].offset;
+    }
+  }
+
+}
+
 void callBack(const sensor_msgs::PointCloud2ConstPtr &msg) {
   // put msg to internal data structure
   pcl::PointCloud<pcl::PointXYZ> cloud_in;

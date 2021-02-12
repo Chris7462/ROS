@@ -18,7 +18,7 @@ id = pcls(:,1) > -1.0;
 pcls = pcls(id,:);
 
 % remove non-ground point clouds
-idz = pcls(:,3) > -2.6 & pcls(:,3) < -1.85;
+idz = pcls(:,3) > -2.6 % & pcls(:,3) < -1.85;
 pcls = pcls(idz,:);
 
 % remove any data outside 20 meters radius
