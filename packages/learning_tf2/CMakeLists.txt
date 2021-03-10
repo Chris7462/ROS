@@ -138,6 +138,7 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/learning_tf2_node.cpp)
 add_executable(turtle_tf2_broadcaster src/turtle_tf2_broadcaster.cpp)
 add_executable(turtle_tf2_listener src/turtle_tf2_listener.cpp)
+add_executable(frame_tf2_broadcaster src/frame_tf2_broadcaster.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -157,6 +158,9 @@ target_link_libraries(turtle_tf2_broadcaster
   ${catkin_LIBRARIES}
 )
 target_link_libraries(turtle_tf2_listener
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(frame_tf2_broadcaster
   ${catkin_LIBRARIES}
 )
 
