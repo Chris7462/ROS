@@ -1,12 +1,41 @@
 clc;
 clear all;
-pcls = csvread('isuzu_transformed.csv');
+pcls = csvread('edge.csv');
 % plot the data
 plot3(pcls(:,1), pcls(:,2), pcls(:,3),'.');
 hold on;
 xlabel('x')
 ylabel('y')
 zlabel('z')
+xlim([-20, 20])
+ylim([-20, 20])
+zlim([-3 3])
+title('edge')
+
+figure
+surf = csvread('surf.csv');
+% plot the data
+plot3(surf(:,1), surf(:,2), surf(:,3),'.r');
+xlabel('x')
+ylabel('y')
+zlabel('z')
+xlim([-20, 20])
+ylim([-20, 20])
+zlim([-3 3])
+title('surf')
+
+figure
+plot3(pcls(:,1), pcls(:,2), pcls(:,3),'.');
+hold on;
+plot3(surf(:,1), surf(:,2), surf(:,3),'.r');
+xlabel('x')
+ylabel('y')
+zlabel('z')
+xlim([-20, 20])
+ylim([-20, 20])
+zlim([-3 3])
+title('together')
+
 
 %% preprocessing
 % remove vehicle point clouds
@@ -23,8 +52,7 @@ pcls = pcls(idz,:);
 
 % remove any data outside 20 meters radius
 %id = sqrt(sum(pcls.^2,2)) <= 20.0;
-%pcls = pcls(id,:);
-
+%pcls = pcls(
 % plot the data
 plot3(pcls(:,1), pcls(:,2), pcls(:,3),'.');
 hold on;
