@@ -11,7 +11,7 @@ void poseCallback(const turtlesim::PoseConstPtr &msg) {
   geometry_msgs::TransformStamped transformStamped;
 
   transformStamped.header.stamp = ros::Time::now();
-  transformStamped.header.frame_id = "world";
+  transformStamped.header.frame_id = "map";
   transformStamped.child_frame_id = turtle_name;
   transformStamped.transform.translation.x = msg->x;
   transformStamped.transform.translation.y = msg->y;
